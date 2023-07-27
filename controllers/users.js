@@ -41,7 +41,14 @@ module.exports.updateUser = (req, res, next) => {
             'Переданы некорректные данные при обновлении профиля',
           ),
         );
-      } else {
+      }
+      else if (err.code === 11000) {
+        next(
+          new ConflictError(
+            'При регистрации указан email, который уже существует на сервере',
+          ),
+        );
+      }else {
         next(err);
       }
     });

@@ -15,7 +15,7 @@ module.exports.createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -30,7 +30,7 @@ module.exports.createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -46,7 +46,7 @@ module.exports.createMovie = (req, res, next) => {
       if (err.name === 'ValidationError') {
         next(
           new BadRequestError(
-            'Переданы некорректные данные при создании карточки',
+            'Переданы некорректные данные при создании фильма',
           ),
         );
       } else {
@@ -56,7 +56,8 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  const owner = req.user._id;
+  Movie.find({owner})
     .then((movies) => {
       res.status(OK).send(movies);
     })
@@ -69,10 +70,10 @@ module.exports.deleteMovie = (req, res, next) => {
 
     .then((movie) => {
       if (!movie) {
-        throw new NotFoundError('Карточка с указанным _id не найдена');
+        throw new NotFoundError('Фильм с указанным _id не найден');
       }
       if (movie.owner.toString() !== req.user._id) {
-        throw new ForbiddenError('Попытка удалить чужую карточку');
+        throw new ForbiddenError('Попытка удалить чужой фильм');
       }
       movie
         .deleteOne()

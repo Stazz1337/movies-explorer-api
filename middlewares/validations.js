@@ -14,9 +14,37 @@ module.exports.validateUserBody = celebrate({
 module.exports.validateAuth = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(REGEXP_LINK),
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
+    password: Joi.string().required(),
   }),
 });
+
+module.exports.validateMovies = celebrate({
+  body: Joi.object().keys({
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().pattern(REGEXP_LINK),
+    trailerLink: Joi.string().required().pattern(REGEXP_LINK),
+    thumbnail: Joi.string().required().pattern(REGEXP_LINK),
+    movieId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+  }),
+})
+
+module.exports.validateMovieId = celebrate({
+  // валидируем параметры
+  params: Joi.object().keys({
+    movieId: Joi.string().length(24).hex().required(),
+  }),
+})
+
+module.exports.validateUserUpdate = celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().min(2).max(30),
+    email: Joi.string().email(),
+  }),
+})
