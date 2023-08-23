@@ -2,8 +2,8 @@
 const allowedCors = [
   'http://localhost:3000',
   'http://localhost:3001',
-  'http://api.dipstazzler.nomoredomains.work',
-  'https://api.dipstazzler.nomoredomains.work',
+  'http://stazzler.nomoredomainsicu.ru',
+  'https://stazzler.nomoredomainsicu.ru',
 ];
 
 module.exports = (req, res, next) => {

@@ -2,8 +2,8 @@
 
 ## Ссылки на проект
 
-IP 158.160.103.35
+IP 158.160.101.147
 
-Frontend https://dipstazzler.nomoredomains.work/
+Frontend  https://stazzler.nomoredomainsicu.ru
 
-Backend https://api.dipstazzler.nomoredomains.work/
+Backend https://api.stazzler.nomoredomainsicu.ru
