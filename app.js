@@ -10,14 +10,16 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const app = express();
 const { PORT = 3000, MONGODB_URL, NODE_ENV } = process.env;
 
-mongoose.connect(
-  NODE_ENV === 'production'
-    ? MONGODB_URL
-    : 'mongodb://127.0.0.1:27017/bitfilmsdb',
-  {
-    useNewUrlParser: true,
-  },
-);
+mongoose
+  .connect(
+    NODE_ENV === 'production'
+      ? MONGODB_URL
+      : 'mongodb://127.0.0.1:27017/bitfilmsdb',
+    {
+      useNewUrlParser: true,
+    },
+  )
+  .then(() => console.log('MongoDB connected'));
 
 app.use(express.json());
 
@@ -33,4 +35,6 @@ app.use(errors()); // обработчик ошибок celebrate
 
 app.use(errorHandler);
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log('Server started on port 3000');
+});
