@@ -2,7 +2,7 @@
 
 ## Ссылки на проект
 
-IP 158.160.101.147
+IP 158.160.103.29
 
 Frontend  https://stazzler.nomoredomainsicu.ru
 
